@@ -7,12 +7,12 @@ import java.awt.Graphics2D;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import org.parabot.environment.api.interfaces.Paintable;
 import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.scripts.Category;
 import org.parabot.environment.scripts.ScriptManifest;
 import org.parabot.environment.scripts.Script;
 import org.parabot.environment.scripts.framework.Strategy;
-
 import org.rev317.min.api.events.MessageEvent;
 import org.rev317.min.api.events.listeners.MessageListener;
 
@@ -24,7 +24,7 @@ import com.script.BYTESTRINGER.ui.GUI;
 import com.script.BYTESTRINGER.util.Utilities;
 
 @ScriptManifest(author = "ByteCoder", category = Category.OTHER, description = "Strings Bowstring", name = "byteSpinner", servers = { "2006scape" }, version = 1.0)
-public class Main extends Script implements MessageListener {
+public class Main extends Script implements Paintable, MessageListener {
 
 	public long startTime;
 	public static GUI g = new GUI();
@@ -57,7 +57,7 @@ public class Main extends Script implements MessageListener {
 		System.out.println("I ran: " + runTime(startTime));
 	}
 
-	private final Color color1 = new Color(0, 0, 0);
+    private final Color color1 = new Color(0, 0, 255);
 
 	private final Font font1 = new Font("Arial Rounded MT Bold", 1, 14);
 
@@ -66,7 +66,7 @@ public class Main extends Script implements MessageListener {
 		g.setFont(font1);
 		g.setColor(color1);
 		g.drawString("RunTime: " + runTime(startTime), 6, 41);
-		g.drawString("Flax Stringed: " + Data.strung, 6, 64);
+		g.drawString("Flax Strung: " + Data.strung, 6, 64);
 	}
 
 	public static String runTime(long i) {
@@ -85,6 +85,8 @@ public class Main extends Script implements MessageListener {
 
 	@Override
 	public void messageReceived(MessageEvent m) {
-
+		if(m.getMessage().toLowerCase().contains("make the flax into") && m.getType() == 0) {
+			Data.strung++;
+		}
 	}
 }

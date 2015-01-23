@@ -43,7 +43,7 @@ public class Spin implements Strategy {
 				}
 				if (Game.getOpenBackDialogId() == 8880) {
 					Menu.sendAction(315, 1779, 16, 8890);
-					Time.sleep(1500);
+					Time.sleep(2600);
 					Keyboard.getInstance().sendKeys("28");
 					Time.sleep(2000);
 
